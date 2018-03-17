@@ -4,9 +4,9 @@ import java.util.Observable;
 
 /**
  * Print the counter value on the console whenever it changes.
+ * @author Varit Assavavisidchai
  */
-//TODO Delare that this implements java.util.Observer
-public class ConsoleView  {
+public class ConsoleView implements java.util.Observer {
 	private Counter counter;
 
 	/**
@@ -18,5 +18,11 @@ public class ConsoleView  {
 		this.counter = counter;
 	}
 
-	//TODO Write the observer method
+	/**
+	 * Notify the program when value of count is changed.
+	 */
+	@Override
+	public void update(Observable subject, Object info) {
+		System.out.printf("Count: %d\n", counter.getCount());
+	}
 }

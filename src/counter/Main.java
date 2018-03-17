@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
  * and 2 observers that show the counter value, so that all
  * the views refer to the same Counter object.
  * 
+ * @author Varit Assavavisidchai
  */
 public class Main extends Application {
 	
@@ -37,7 +38,7 @@ public class Main extends Application {
 			// Now we can get the controller object from the FXMLloader.
 			// This is interesting -- we don't need to use a cast!
 			ClickController controller = loader.getController();
-			
+			controller.setCounter(counter);
 			// Dependency Injection:
 			// Set the Counter object we want the view to update.
 			
@@ -59,17 +60,19 @@ public class Main extends Application {
 		// We set a reference to the counter using the constructor.
 		
 		//TODO Create a ConsoleView with dependency injection.
-		
+		ConsoleView cv = new ConsoleView(counter);
 		//TODO Add ConsoleView as an observer of Counter
-		
+		counter.addObserver(cv);
 		
 		// Create another window that references the SAME counter. 
 		
 		//TODO: Complete the CounterView class.
-		//CounterView view = new CounterView(counter);
+		CounterView view = new CounterView(counter);
 		
 		//TODO Add CounterView as observer.
+		counter.addObserver(view);
 		//TODO Show CounterView by calling its run() method
+		view.run();
 	}
 	
 	public static void main(String[] args) {

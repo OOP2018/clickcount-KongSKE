@@ -1,20 +1,29 @@
 package counter;
+
+import java.util.Observable;
+
 /**
  * A simple counter.
+ * @author Varit Assavavisidchai
  */
 
-public class Counter  {
+public class Counter extends Observable {
 	private int count;
 	
+	/**
+	 * Constructor of counter
+	 * Make count be zero first.
+	 */
 	public Counter() {
 		this.count = 0;
 	}
 	
+	/**
+	 * 
+	 * @param howmuch is value of count.
+	 */
 	public void add(int howmuch) {
 		count += howmuch;
-		//TODO notify the observers that the value has changed!
-		//TODO to minimize call-backs from the Observers, include
-		//TODO the new counter value as a parameter to notifyObserver().
 		// Its like if the Bank sends you an SMS whenever money
 		// is deposited in your account. If the SMS just says 
 		// "you received a deposit" then you need to login to check it.
@@ -24,6 +33,10 @@ public class Counter  {
 		notifyObservers();
 	}
 	
+	/**
+	 * Get value of count
+	 * @return value of count
+	 */
 	public int getCount() {
 		return count;
 	}
